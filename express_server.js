@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var PORT = 8080 //Our default port for this app
 
+app.set("view engine", "ejs");
+
 let urlDatabase = {
     "b2xVn2": "http://www.lighthouselabs.ca",
     "9sm5xK": "http://www.google.com"
