@@ -10,10 +10,17 @@
 </head>
 <body style="font-size:20px; padding:50px;">
   <% include ./partials/_header.ejs %>
-  <a href="#">Create a new URL here! </a>
+  <a href="/urls/new">Create a new URL here! </a>
   <h2>My URLs</h2>
-  <%   for(var keys in urls) { %>
-        <li><%= keys %>: <%= urls[keys] %></li>
-    <%  } %> 
+  
+    <%   for(var keys in urls) { %>
+      <li><%= keys %>: <%= urls[keys] %> ---------->
+        <form method="POST" action="/urls/<%= keys %>/delete">
+          <button type="delete" class="btn btn-dark" role="button" onclick="delete"> Delete Link
+        </form>
+      </li> 
+    <%  } %>
+  
+  </tr>
 </body>
 </html>
