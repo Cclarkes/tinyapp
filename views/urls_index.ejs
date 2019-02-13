@@ -9,9 +9,11 @@
   <title>TinyApp</title>
 </head>
 <body style="font-size:20px; padding:50px;">
-
-    <%   for(var keys in urls) { %>
-        <p><%= keys %>: <%= urls[keys] %></p>
-    <%  } %>
+  <% include ./partials/_header.ejs %>
+  <a href="#">Create a new URL here! </a>
+  <h2>My URLs</h2>
+  <%   for(var keys in urls) { %>
+        <li><%= keys %>: <%= urls[keys] %></li>
+    <%  } %> 
 </body>
 </html>

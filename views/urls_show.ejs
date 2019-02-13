@@ -9,8 +9,9 @@
   <title>TinyApp</title>
 </head>
 <body style="font-size:20px; padding:50px;">
+<% include ./partials/_header.ejs %>
+<a href="#">Create a new URL here! </a>
 
-        <p><%= shortURL %>: <%= longURL %></p>
-        <a href="#">Create a new URL here! </a>
+        <h3>URL for <%= shortURL %>:</h3> <%= longURL %></p>
 </body>
 </html>
