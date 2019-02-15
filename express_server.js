@@ -65,7 +65,7 @@ app.post("/registration", (req,res) => {
   email: (req.body["email"]),
   password: (req.body['password'])
     }
-  res.cookie("user_id", users[randomID].id)
+  res.cookie("user_id", users[randomID])
   res.redirect("/urls/")
   console.log(users);
   })
