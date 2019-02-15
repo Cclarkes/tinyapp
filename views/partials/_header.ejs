@@ -1,13 +1,14 @@
 <h1><a href="/urls/" style="color: #eb380c; text-decoration: none;">Tiny App</a></h1>
 <h2> <% if (!user || user === undefined) { %> </h2>
 <form method="GET" action="/login/">
+  <h3>Please login to create a URL.</h3>
   <button type="submit" class="btn btn-dark" onclick="submit">Login</button>
 </form>
 <form method="GET" action="/registration/">
 <button type="redirect" class="btn btn-dark" onclick="redirect">Register</button>
 </form>
 <% } else { %>
-<p> <%= user.email %> </p>
+<p> Welcome to TinyApp, <%= user.email %> ! </p>
   <form method="POST" action="/logout">
     <button type="submit" class="btn btn-dark">Logout</button>
   </form>

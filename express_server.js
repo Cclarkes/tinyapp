@@ -73,7 +73,11 @@ app.get("/urls/new", (req, res) => {
   let templateVars = { urls: urlDatabase,
     user: req.cookies["user_id"]
   };
+    if(req.cookies["user_id"] === undefined) {
+      res.redirect("/login")
+    } else {
   res.render("urls_new", templateVars)
+    }
 })
 
 app.post("/urls/:shortURL/editing", (req, res) => {
@@ -146,7 +150,8 @@ app.get("/urls.json", (req, res) => {
 app.post("/urls", (req, res) => {
   let randomNumber = generateRandomString();
   urlDatabase[randomNumber] = (req.body.longURL);
-  res.redirect("/urls/" + randomNumber);         
+  res.redirect("/urls/" + randomNumber);
+  console.log(urlDatabase);
 });
 
   app.get("/u/:shortURL", (req, res) => {
