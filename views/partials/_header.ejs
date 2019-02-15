@@ -1,9 +1,8 @@
 <h1><a href="/urls/" style="color: #eb380c; text-decoration: none;">Tiny App</a></h1>
 <h2> <% if (!user || user === undefined) { %> </h2>
-<form method="POST" action="/login/">
-    <input class="form-control" type="text" name="username" placeholder="Username" style="width: 300px; margin: 1em">
-    <button type="submit" class="btn btn-dark" onclick="submit">Login</button>
-  </form>
+<form method="GET" action="/login/">
+  <button type="submit" class="btn btn-dark" onclick="submit">Login</button>
+</form>
 <form method="GET" action="/registration/">
 <button type="redirect" class="btn btn-dark" onclick="redirect">Register</button>
 </form>

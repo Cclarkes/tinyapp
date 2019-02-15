@@ -67,14 +67,13 @@ app.post("/registration", (req,res) => {
     }
   res.cookie("user_id", users[randomID])
   res.redirect("/urls/")
-  console.log(users);
   })
 
 app.get("/urls/new", (req, res) => {
   let templateVars = { urls: urlDatabase,
     user: req.cookies["user_id"]
   };
-  res.render("urls_new", templateVars, )
+  res.render("urls_new", templateVars)
 })
 
 app.post("/urls/:shortURL/editing", (req, res) => {
@@ -88,20 +87,39 @@ app.get("/urls/:shortURL/edit", (req, res) => {
     user: req.cookies["user_id"], 
     shortURL: req.params.shortURL,
     longURL: urlDatabase[req.params.shortURL]
+    
   };
-
   res.render("urls_show", templateVars);
-  console.log(templateVars);
 })
 app.post("/urls/:shortURL/delete", (req, res) => {
   delete urlDatabase[req.params.shortURL];  
   res.redirect("/urls");
 })
 
-app.post("/login/", (req, res) => {
-  res.cookie("user_id", req.body.user_id);
-  res.redirect("/urls");
-  console.log(req.body.user_id)
+app.get("/login", (req, res) => {
+  let templateVars = { urls: urlDatabase,
+    user: req.cookies["user_id"]
+  };
+  res.render("login", templateVars);
+});
+
+app.post("/loginSubmit", (req, res) => {
+  let userList = users;
+  let elUser = null
+  for(var key in userList) {
+    if ((req.body.username) === userList[key].id &&
+    (req.body.password) === userList[key].password) {
+    elUser = userList[key];
+    }
+  }
+  if(elUser == null) {
+    res.status(400).send("Incorrect username or password entered - please try again");
+  } else {
+    res.cookie("user_id", elUser);
+    console.log(elUser.id);
+    res.redirect("/urls");
+    
+  }
 });
 
 app.post("/logout", (req, res) => {
@@ -111,7 +129,9 @@ app.post("/logout", (req, res) => {
 
 app.get("/urls/:shortURL", (req, res) => {
   let templateVars = { urls: urlDatabase,
-    user: req.cookies["user_id"]
+    user: req.cookies["user_id"],
+    shortURL: req.params.shortURL,
+    longURL: urlDatabase[req.params.shortURL]
   };
   res.render("urls_show", templateVars);
 });
