@@ -10,9 +10,9 @@
 </head>
 <body style="font-size:20px; padding:50px;">
 <% include ./partials/_header.ejs %>
-<a href="#">Create a new URL here! </a>
+<a href="/urls/new/">Create a new URL here! </a>
 
-        <h2>ShortURL: <b><%= shortURL %></b><p></h2> Current LongURL: <%= longURL %></p>
+        <h2>ShortURL: <b><%= shortURL %></b><p><u></h2> Current LongURL: <%= longURL %></u></p>
         <form method="POST" action="/urls/<%= shortURL %>/editing">
         <input class="form-control" type="text" name="longURL" placeholder="New URL" style="width: 300px; margin: 1em">
         <button type="edit" class="btn btn-dark" onclick="edit">Update Long URL</button>
