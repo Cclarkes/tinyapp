@@ -3,11 +3,9 @@ var app = express();
 var PORT = 8080 //Our default port for this app
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
-const hashedPassword = bcrypt.hashSync(password, 10);
 
-app.use(bcrypt());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -117,7 +115,7 @@ app.post("/loginSubmit", (req, res) => {
   let elUser = null
   for(var key in userList) {
     if ((req.body.email) === userList[key].email &&
-    (req.body.password) === userList[key].password) {
+    bcrypt.compareSync((req.body.password), users[key].password)) {
     elUser = userList[key].id;
     }
   }
@@ -161,7 +159,6 @@ app.post("/urls", (req, res) => {
 
   app.get("/u/:shortURL", (req, res) => {
   const longURL = urlDatabase[req.params.shortURL].longURL;
-  console.log(longURL);
   res.redirect("http://" + longURL);
   });
 
