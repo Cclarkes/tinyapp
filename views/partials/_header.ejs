@@ -2,11 +2,17 @@
 <h2> <% if (!user) { %> </h2>
 <form method="GET" action="/login/">
   <h3>Please login to create a URL.</h3>
+  <div class="btn-group">
   <button type="submit" class="btn btn-dark" onclick="submit">Login</button>
 </form>
+<ul class="nav nav-list">
+  <li class="divider"></li>
+    ~~or~~
+</ul>
 <form method="GET" action="/registration/">
 <button type="redirect" class="btn btn-dark" onclick="redirect">Register</button>
 </form>
+</div>
 <% } else { %>
 <p> Welcome to TinyApp, <%= user.email %> ! </p>
   <form method="POST" action="/logout">

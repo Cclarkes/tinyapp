@@ -18,7 +18,7 @@
         <div class="form-inline">
         <%= keys + "---------->" + urls[keys].longURL %> 
         <form class="form-inline" method="GET" action="/urls/<%= keys %>/edit">
-          <button type="edit" class="btn btn-link" role="button" onclick="edit"> Edit Link </button>
+          <button type="edit" class="btn btn-dark" role="button" onclick="edit"> Edit Link </button>
         </form>
         <form class="form-inline" method="POST" action="/urls/<%= keys %>/delete">
           <button type="delete" class="btn btn-dark" role="button"> Delete Link </button>
