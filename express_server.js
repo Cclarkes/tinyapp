@@ -3,7 +3,11 @@ var app = express();
 var PORT = 8080 //Our default port for this app
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const bcrypt = require('bcrypt');
 
+const hashedPassword = bcrypt.hashSync(password, 10);
+
+app.use(bcrypt());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -59,10 +63,11 @@ app.post("/registration", (req,res) => {
     res.status(400);
     res.send("Please enter a valid email/password combo to continue.")
   }
+
   users[randomID] = {
   id: randomID,
   email: (req.body["email"]),
-  password: (req.body['password'])
+  password: bcrypt.hashSync((req.body['password']), 10)
     }
   res.cookie("user_id", randomID)
   res.redirect("/urls/")
